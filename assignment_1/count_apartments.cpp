@@ -41,6 +41,10 @@ void dfs(int src_i, int src_j)
 
 int main()
 {
+    
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
     cin >> row >> col;
 
     for (int i = 0; i < row; i++)
@@ -55,33 +59,20 @@ int main()
 
     // dfs(1, 1);
     
-    pair<int, int> A, B;
+    int apt_count = 0;
     for (int i = 0; i < row; i++)
     {
         for (int j = 0; j < col; j++)
         {
-            if (building_map[i][j] == 'A' && visited_cell[i][j] == false)
+            if (building_map[i][j] == '.' && visited_cell[i][j] == false)
             {
-                A = {i, j};
-                // dfs(A.first, A.second);
-            }
-            else if (building_map[i][j] == 'B' && visited_cell[i][j] == false)
-            {
-                B = {i, j};
+                dfs(i, j);
+                apt_count++;
             }
         }
     }
     
-    dfs(A.first, A.second);
-    
-    if (visited_cell[B.first][B.second])
-    {
-        cout << "YES" << endl;
-    }
-    else 
-    {
-        cout << "NO" << endl;
-    }
+    cout << apt_count << endl;
 
     return 0; 
 }

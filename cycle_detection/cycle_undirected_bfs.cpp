@@ -4,9 +4,8 @@ const int N = 1e5 + 5;
 
 vector<int> ad_list[N];
 bool visited_node[N];
-int child_parent[N];
+int parent_of_child[N];
 bool isCycle;
-
 
 void bfs(int src)
 {
@@ -18,7 +17,17 @@ void bfs(int src)
     while (!ad_list_queue.empty())
     {
         /*
-        there is cycle: visited node, parent and child of the node are not same 
+        there is cycle: visited node, parent of the immediate parent
+        and child are not same
+
+        input:
+        7 6
+        0 1
+        1 2
+        3 4
+        4 5
+        5 6
+        6 3
         */
         int parent_node = ad_list_queue.front();
         ad_list_queue.pop();
@@ -27,21 +36,20 @@ void bfs(int src)
 
         for (int child : ad_list[parent_node])
         {
-            if (visited_node[child] && child_parent[parent_node] != child)
+            if (visited_node[child] && parent_of_child[parent_node] != child)
             {
-                isCycle = true; 
+                isCycle = true;
             }
 
             if (!visited_node[child])
             {
                 ad_list_queue.push(child);
                 visited_node[child] = true;
-                child_parent[child] = parent_node;
+                parent_of_child[child] = parent_node;
             }
         }
     }
 }
-
 
 int main()
 {
@@ -58,7 +66,7 @@ int main()
     }
 
     memset(visited_node, false, sizeof(visited_node));
-    memset(child_parent, -1, sizeof(child_parent));
+    memset(parent_of_child, -1, sizeof(parent_of_child));
 
     isCycle = false;
     for (int i = 0; i < n; i++)
@@ -73,7 +81,7 @@ int main()
     {
         cout << "Cycle found" << endl;
     }
-    else 
+    else
     {
         cout << "Cycle not found" << endl;
     }

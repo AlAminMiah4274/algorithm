@@ -22,7 +22,7 @@ void dsu_initialization(int n)
 // }
 
 
-int find(int node)
+int find(int node) // complexity: O(log n) 
 {
     if (parent[node] == -1) return node;
     int leader = find(parent[node]);

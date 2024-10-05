@@ -18,14 +18,14 @@ bool subset_sum(int n, int arr[], int sum)
 
     if (arr[n - 1] <= sum)
     {
-        int chosen = subset_sum(n - 1, arr, sum - arr[n - 1]);
-        int not_chosen = subset_sum(n - 1, arr, sum);
+        bool chosen = subset_sum(n - 1, arr, sum - arr[n - 1]);
+        bool not_chosen = subset_sum(n - 1, arr, sum);
 
         return subset_sum_optimization[n][sum] = chosen || not_chosen;
     }
     else
     {
-        int not_chosen = subset_sum(n - 1, arr, sum);
+        bool not_chosen = subset_sum(n - 1, arr, sum);
         return subset_sum_optimization[n][sum] = not_chosen;
     }
 }

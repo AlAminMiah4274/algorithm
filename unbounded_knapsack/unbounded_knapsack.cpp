@@ -15,7 +15,7 @@ int unbounded_knapsack(int n, int w_arr[], int v_arr[], int W)
         int not_chosen = unbounded_knapsack(n - 1, w_arr, v_arr, W);
 
         return dp[n][W] = max(chosen, not_chosen);
-    }
+}
     else 
     {
         return dp[n][W] = unbounded_knapsack(n - 1, w_arr, v_arr, W);

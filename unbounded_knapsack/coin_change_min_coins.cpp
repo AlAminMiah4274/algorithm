@@ -1,32 +1,7 @@
 #include <bits/stdc++.h>
+#define ll long long 
 using namespace std;
-const int N = 1005;
 
-
-int dp[N][N];
-int min_coins(int n, vector<int> arr, int amount)
-{
-    if (n == 0)
-    {
-        if (amount == 0) return 0;
-        else return INT_MAX;
-    }
-
-
-    if (dp[n][amount] != -1) return dp[n][amount];
-
-    if (arr[n - 1] <= amount)
-    {
-        int chosen = min_coins(n, arr, amount - arr[n - 1]) + 1;
-        int not_chosen = min_coins(n - 1, arr, amount);
-
-        return dp[n][amount] = min(chosen, not_chosen);
-    }
-    else 
-    {
-        return dp[n][amount] = min_coins(n - 1, arr, amount);
-    }
-}
 
 
 int main()
@@ -48,16 +23,31 @@ int main()
     cin >> amount;
 
 
-    for (int i = 0; i <= n; i++)
+    ll dp[n + 1][amount + 1];
+    dp[0][0] = 0;
+    for (int i = 1; i <= amount; i++) dp[0][i] = INT_MAX - 1;
+
+
+    for (int i = 1; i <= n; i++)
     {
         for (int j = 0; j <= amount; j++)
         {
-            dp[i][j] = -1;
+            if (coins[i - 1] <= j)
+            {
+                ll chosen = dp[i][j - coins[i - 1]] + 1;
+                ll not_chosen = dp[i - 1][j];
+
+                dp[i][j] = min(chosen, not_chosen);
+            }
+            else 
+            {
+                dp[i][j] = dp[i - 1][j];
+            }
         }
     }
 
 
-    cout << min_coins(n, coins, amount) << "\n";
+    cout << dp[n][amount] << "\n";
 
 
 

@@ -3,7 +3,6 @@
 using namespace std;
 
 
-
 int main()
 {
     ios::sync_with_stdio(false);
@@ -47,8 +46,11 @@ int main()
     }
 
 
-    cout << dp[n][amount] << "\n";
+    // cout << dp[n][amount] << "\n";
 
+
+    if (dp[n][amount] == INT_MAX - 1) cout << "Not Possible" << "\n";
+    else cout << dp[n][amount] << "\n";
 
 
     return 0;

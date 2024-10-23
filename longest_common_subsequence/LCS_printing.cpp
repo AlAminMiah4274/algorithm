@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
 int main()
 {
 	string a, b;
 	cin >> a >> b;
 
 	int n = a.size(), m = b.size();
-
 
 	int lcs[n + 1][m + 1];
 	for (int i = 0; i <= n; i++)
@@ -26,6 +26,8 @@ int main()
 			if (a[i - 1] == b[j - 1])
 			{
 				lcs[i][j] = lcs[i - 1][j - 1] + 1;
+
+				// lcs[i][j] = ans + 1;
 			}
 			else
 			{
@@ -38,19 +40,14 @@ int main()
 	}
 
 
-	// cout << lcs[n][m];
-
-
-	// for (int i = 0; i <= n; i++)
-	// {
-	// 	for (int j = 0; j <= m; j++)
-	// 	{
-	// 		cout << lcs[i][j] << " ";
-	// 	}
-	// 	cout << "\n";
-	// }
-
-
+	for (int i = 0; i <= n; i++)
+	{
+		for (int j = 0; j <= m; j++)
+		{
+			cout << lcs[i][j] << " ";
+		}
+		cout << "\n";
+	}
 
 
 	return 0;

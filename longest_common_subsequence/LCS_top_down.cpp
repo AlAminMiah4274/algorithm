@@ -19,7 +19,7 @@ int LCS(string a, int n, string b, int m)
 
         return dp[n][m] = ans + 1;
     }
-    else 
+    else
     {
         int ans1 = LCS(a, n - 1, b, m);
         int ans2 = LCS(a, n, b, m - 1);

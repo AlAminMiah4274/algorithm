@@ -40,14 +40,44 @@ int main()
 	}
 
 
-	for (int i = 0; i <= n; i++)
+	// for (int i = 0; i <= n; i++)
+	// {
+	// 	for (int j = 0; j <= m; j++)
+	// 	{
+	// 		cout << lcs[i][j] << " ";
+	// 	}
+	// 	cout << "\n";
+	// }
+
+
+	int i = n, j = m;
+	string ans;
+
+	while (i != 0 && j != 0)
 	{
-		for (int j = 0; j <= m; j++)
+		if (a[i - 1] == b[j - 1])
 		{
-			cout << lcs[i][j] << " ";
+			ans += a[i - 1];
+			i--;
+			j--;
 		}
-		cout << "\n";
+		else
+		{
+			if (lcs[i][j - 1] > lcs[i - 1][j])
+			{
+				j--;
+			}
+			else
+			{
+				i--;
+			}
+		}
 	}
+
+	reverse(ans.begin(), ans.end());
+
+	cout << ans;
+
 
 
 	return 0;

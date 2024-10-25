@@ -32,15 +32,17 @@ int main()
 	}
 
 
-	// for (int i = 0; i <= n; i++)
-	// {
-	// 	for (int j = 0; j <= m; j++)
-	// 	{
-	// 		cout << substring[i][j] << " ";
-	// 	}
-	// }
+	int longest_str = 0;
+	for (int i = 0; i <= n; i++)
+	{
+		for (int j = 0; j <= m; j++)
+		{
+			longest_str = max(longest_str, substring[i][j]);
+		}
+	}
 
-	cout << substring[n][m];
+
+	cout << longest_str;
 
 
 	return 0;
